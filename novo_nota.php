@@ -18,11 +18,6 @@ function adicionar(){
     $media = (2*$red + 4*$mat + 2*$port + $nat + $hum)/10;
 }
 
-function fechar(){
-    if ($comando == "fechar"){
-        
-    }
-}
 
 $lista = ["nome" => $nome,
 "redacao" => $red,
@@ -33,23 +28,26 @@ $lista = ["nome" => $nome,
 "media" => $media
 ];
 
-$listaAluno = [$lista];
+$listaAluno = array_push($lista);
+$comando = null;
 
-$comando = readline("Escolha se quer *ver* ou *adicionar* uma nota: ");
-$comando = strtolower($comando);
-
-if ($comando == "ver"){
-    if ($lista == null){
-       echo "lista vazia";
-    } else if ($lista != null){
-       $cont = 0;
-       while ($cont < count($listaAluno)){
-           print_r($listaAluno[$cont]);
-           $cont++;
-       }
+while ($comando != "fechar"){
+    $comando = readline("Escolha se quer *ver* ou *adicionar* uma nota ou *fechar* o programa: ");
+    $comando = strtolower($comando);
+    
+    if ($comando == "ver"){
+        if ($lista == null){
+           echo "lista vazia";
+        } else if ($lista != null){
+           $cont = 0;
+           while ($cont < count($lista)){
+               print_r($listaAluno[$cont]);
+               $cont++;
+           }
+        }
+    } else if ($comando == "adicionar"){
+        adicionar();
     }
-} else if ($comando == "adicionar"){
-    adicionar();
 }
 
 
