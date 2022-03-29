@@ -16,19 +16,21 @@ function adicionar(){
     $nat = readline("Nota de ciência naturais: ");
     $hum = readline("Nota de ciências humanas: ");
     $media = (2*$red + 4*$mat + 2*$port + $nat + $hum)/10;
+    $lista = ["nome" => $nome,
+    "redacao" => $red,
+    "matematica" => $mat,
+    "portugues" => $port,
+    "natureza" => $nat,
+    "humanas" => $hum,
+    "media" => $media
+    ];
+
+    return $lista;
 }
 
 
-$lista = ["nome" => $nome,
-"redacao" => $red,
-"matematica" => $mat,
-"portugues" => $port,
-"natureza" => $nat,
-"humanas" => $hum,
-"media" => $media
-];
 
-$listaAluno = array_push($lista);
+$listaAluno = [];
 $comando = null;
 
 while ($comando != "fechar"){
@@ -36,17 +38,18 @@ while ($comando != "fechar"){
     $comando = strtolower($comando);
     
     if ($comando == "ver"){
-        if ($lista == null){
-           echo "lista vazia";
-        } else if ($lista != null){
+        if (count($listaAluno) == 0){
+           echo "lista vazia".PHP_EOL;
+        } else if (count($listaAluno) != 0){
            $cont = 0;
-           while ($cont < count($lista)){
+           while ($cont < count($listaAluno)){
                print_r($listaAluno[$cont]);
                $cont++;
            }
         }
     } else if ($comando == "adicionar"){
-        adicionar();
+        $listaAluno[] = adicionar();
+
     }
 }
 
